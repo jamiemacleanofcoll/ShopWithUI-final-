@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Actor' rel='stylesheet'>
+</head>
+
+<body>
+    <h1>My Little Online Shop</h1>
+    Reviews
+    <li><a href={{ url_for('main_bp.homepage') }}>Homepage</a></li>
+    <li><a href={{ url_for('shop_bp.products') }}>Shop</a></li>
+    {% if logged_in %}
+    <li><a href={{ url_for('user_bp.logout') }}>Logout</a></li>
+    <li><a href={{ url_for('user_bp.profile') }}>Your Profile</a></li>
+    {% else %}
+    <li><a href={{ url_for('user_bp.signup') }}>Create New Account</a></li>
+    <li><a href={{ url_for('user_bp.login') }}>Login</a></li>
+    {%endif%}
+    {%for num, review in reviews%}
+    <p>
+        Review {{str(num)}}
+    <ul>
+        <li>Review title: {{str(review.review_title)}}</li>
+        <li>Review text: {{review.review_text}}</li>
+    </ul>
+    </p>
+    {%endfor%}
+    <p>
+        Add New Review
+    <form action="" method="POST">
+        <label for="review_title"><b>Review Title</b></label>
+        <input type="text" placeholder="Enter Review Title" name="review_title" required>
+
+        <label for="review_text"><b>review text</b></label>
+        <input type="text" placeholder="Enter review text" name="review_text" required><br />
+
+        <button type="submit">Add Review</button>
+    </form>
+    </p>
+</body>
+
+</html>

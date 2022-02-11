@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Actor' rel='stylesheet'>
+</head>
+
+<body>
+    <h1>My Little Online Shop</h1>
+    Profile
+    <li><a href={{ url_for('main_bp.homepage') }}>Homepage</a></li>
+    <li><a href={{ url_for('shop_bp.products') }}>Shop</a></li>
+    {% if logged_in %}
+    <li><a href={{ url_for('user_bp.logout') }}>Logout</a></li>
+    <li><a href={{ url_for('user_bp.profile') }}>Your Profile</a></li>
+    {% else %}
+    <li><a href={{ url_for('user_bp.signup') }}>Create New Account</a></li>
+    <li><a href={{ url_for('user_bp.login') }}>Login</a></li>
+    {%endif%}
+    <form action="" method="POST">
+        <ul>
+            {%for key, value in user_dict.items()%}
+            {%if edit%}
+            <li>{{key}}: <input type="text" value="{{value}}" name="{{key}}" required></li>
+            {%else%}
+            <li>{{key}}: {{value}}</li>
+            {%endif%}
+            {%endfor%}
+        </ul>
+        {%if edit%}
+        <button type="submit">Save</button>
+        {%else%}
+        <input type="submit" name="submit" value="Edit Profile"></input>
+        {%endif%}
+    </form>
+
+</body>
+
+</html>

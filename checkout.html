@@ -1,0 +1,58 @@
+<html>
+
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Actor' rel='stylesheet'>
+</head>
+
+<body>
+  <h1>My Little Online Shop Checkout</h1>
+  <ul>
+    <li><a href={{ url_for('main_bp.homepage') }}>Homepage</a></li>
+    <li><a href={{ url_for('shop_bp.products') }}>Shop</a></li>
+    {% if logged_in %}
+    <li><a href={{ url_for('user_bp.logout') }}>Logout</a></li>
+    <li><a href={{ url_for('user_bp.profile') }}>Your Profile</a></li>
+    {% else %}
+    <li><a href={{ url_for('user_bp.signup') }}>Create New Account</a></li>
+    <li><a href={{ url_for('user_bp.login') }}>Login</a></li>
+    {% endif %}
+  </ul>
+  <form action="" method="POST">
+    <label for="firstname"><b>first name</b></label>
+    <input type="text" placeholder="Enter firstname" name="firstname" required>
+
+    <label for="lastname"><b>last name</b></label>
+    <input type="text" placeholder="Enter lastname" name="lastname" required><br />
+
+    <label for="street"><b>street</b></label>
+    <input type="text" placeholder="Enter street" name="street" required>
+
+    <label for="house_number"><b>house number</b></label>
+    <input type="text" placeholder="Enter house number" name="house_number" required><br />
+
+    <label for="zip_code"><b>zip code</b></label>
+    <input type="text" placeholder="Enter zip code" name="zip_code" required><br />
+
+    <label for="city"><b>city</b></label>
+    <input type="text" placeholder="Enter city" name="city" required><br />
+
+    <label for="credit_card_owner"><b>credit card owner</b></label>
+    <input type="text" placeholder="Enter credit card owner" name="credit_card_owner" required><br />
+
+    <label for="credit_card_number"><b>credit card number</b></label>
+    <input type="text" placeholder="Enter credit card number" name="credit_card_number" required>
+
+    <label for="cvv"><b>cvv</b></label>
+    <input type="text" placeholder="Enter cvv" name="cvv" required>
+
+    <label for="valid_month"><b>valid month</b></label>
+    <input type="text" placeholder="Enter valid month" name="valid_month" required>
+
+    <label for="valid_year"><b>valid year</b></label>
+    <input type="text" placeholder="Enter valid year" name="valid_year" required>
+
+    <button type="submit">Checkout</button>
+  </form>
+</body>
+
+</html>

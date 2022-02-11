@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Actor' rel='stylesheet'>
+</head>
+
+<body>
+  <h1>My Little Online Shop Sign Up</h1>
+  <li><a href={{ url_for('main_bp.homepage') }}>Homepage</a></li>
+  <li><a href={{ url_for('shop_bp.products') }}>Shop</a></li>
+  <li><a href={{ url_for('user_bp.signup') }}>Create New Account</a></li>
+  <li><a href={{ url_for('user_bp.login') }}>Login</a></li>
+  <form action="" method="POST">
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required><br />
+
+    <label for="firstname"><b>first name</b></label>
+    <input type="text" placeholder="Enter first name" name="firstname" required>
+
+    <label for="lastname"><b>last name</b></label>
+    <input type="text" placeholder="Enter last name" name="lastname" required><br />
+
+    <label for="date of birth"><b>birthday</b></label>
+    <input type="date" placeholder="Enter birthday" name="date of birth" required><br />
+
+    <button type="submit">Login</button>
+  </form>
+</body>
+
+</html>

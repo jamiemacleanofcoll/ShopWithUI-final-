@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Actor' rel='stylesheet'>
+</head>
+
+<body>
+    <h1>My Little Online Shop</h1>
+    Add Product
+
+    <ul>
+        <li><a href={{ url_for('main_bp.homepage') }}>Homepage</a></li>
+        <li><a href={{ url_for('shop_bp.products') }}>Shop</a></li>
+        {% if logged_in %}
+        <li><a href={{ url_for('user_bp.logout') }}>Logout</a></li>
+        <li><a href={{ url_for('user_bp.profile') }}>Your Profile</a></li>
+        {% else %}
+        <li><a href={{ url_for('user_bp.signup') }}>Create New Account</a></li>
+        <li><a href={{ url_for('user_bp.login') }}>Login</a></li>
+        {% endif %}
+    </ul>
+
+    <form action="" method="POST">
+        <label for="name"><b>Product Name</b></label>
+        <input type="text" placeholder="Enter Product Name" name="name" required>
+
+        <label for="description"><b>Description</b></label>
+        <input type="text" placeholder="Enter Description" name="description" required><br />
+
+        <label for="price_before_tax"><b>Price before Tax</b></label>
+        <input type="text" placeholder="Enter Price before Tax" name="price_before_tax" required>
+
+        <label for="price_after_tax"><b>Price after Tax</b></label>
+        <input type="text" placeholder="Enter Price after Tax" name="price_after_tax" required><br />
+
+        <label for="stock"><b>Stock</b></label>
+        <input type="text" placeholder="Enter Stock" name="stock" min="1" step="1" value="0" required><br />
+
+        <label for="category"><b>Category</b></label>
+        <input type="text" placeholder="Enter Category" name="category" required><br />
+
+        <button type="submit">Add product</button>
+    </form>
+
+</body>
+
+</html>

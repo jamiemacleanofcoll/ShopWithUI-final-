@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Actor' rel='stylesheet'>
+</head>
+
+<body>
+    <h1>My Little Online Shop</h1>
+    Products
+    {%if message%}
+    <script type="text/javascript">
+        alert("{{ message }}");
+    </script>
+    {%endif%}
+    <li><a href={{ url_for('main_bp.homepage') }}>Homepage</a></li>
+    <li><a href={{ url_for('shop_bp.products') }}>Shop</a></li>
+    {% if logged_in %}
+    <li><a href={{ url_for('user_bp.logout') }}>Logout</a></li>
+    <li><a href={{ url_for('user_bp.profile') }}>Your Profile</a></li>
+    {% else %}
+    <li><a href={{ url_for('user_bp.signup') }}>Create New Account</a></li>
+    <li><a href={{ url_for('user_bp.login') }}>Login</a></li>
+    {%endif%}
+    {%if admin%}
+    <li><a href={{ url_for('shop_bp.add_product') }}>Add Product</a></li>
+    {%endif%}
+    {%if not logged_in%}
+    <li>Login to start shopping</li>
+    {% else %}
+    <li><a href={{ url_for('shop_bp.checkout') }}>Checkout</a></li>
+    {%endif%}
+
+    {%for num, product in products%}
+    <form action="" method="POST">
+        <p>
+            Product {{str(num)}}
+        <ul>
+            <li>ID: {{str(product.product_id)}}</li>
+            <li>Name: {{product.name}}</li>
+            <li>Description: {{product.description}}</li>
+            <li>Price exl. tax: {{str(product.price_before_tax)}}</li>
+            <li>Price incl. tax: {{str(product.price_after_tax)}}</li>
+            <li>Stock: {{str(product.stock)}}</li>
+            <li>Category: {{product.category}}</li>
+        </ul>
+        <a href={{ url_for('review_bp.reviews', product_id=product.product_id) }}>View Reviews</a>
+        {%if logged_in%}
+        <label for="quantity">Quantity: </label>
+        <input type="number" name="product_quantity.{{str(product.product_id)}}" min="1" step="1" value="0" required>
+        <input type="submit" name="submit" value="Add product {{str(product.product_id)}}"></input>
+        {%endif%}
+        </p>
+    </form>
+    {%endfor%}
+</body>
+
+</html>
